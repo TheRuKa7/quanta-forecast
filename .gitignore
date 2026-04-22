@@ -18,6 +18,7 @@ checkpoints/
 *.pth
 *.safetensors
 data/
+!src/quanta/data/
 runs/
 outputs/
 .streamlit/secrets.toml
