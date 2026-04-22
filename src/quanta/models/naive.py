@@ -12,10 +12,10 @@ import numpy as np
 from quanta.base import BaseForecaster, TimeSeries
 
 __all__ = [
+    "DriftForecaster",
+    "MeanForecaster",
     "NaiveForecaster",
     "SeasonalNaiveForecaster",
-    "MeanForecaster",
-    "DriftForecaster",
 ]
 
 

@@ -30,7 +30,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field, field_validator
 
 from quanta import __version__
-from quanta.base import DEFAULT_QUANTILES, TimeSeries
+from quanta.base import TimeSeries
 from quanta.registry import create, list_backends
 
 app = FastAPI(title="quanta-forecast", version=__version__)

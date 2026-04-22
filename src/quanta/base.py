@@ -70,7 +70,7 @@ class TimeSeries:
         start: str | pd.Timestamp | None = None,
         freq: str | None = None,
         name: str = "y",
-    ) -> "TimeSeries":
+    ) -> TimeSeries:
         """Build a TimeSeries from a raw array; index is inferred."""
         arr = np.asarray(values, dtype=np.float64)
         idx: pd.DatetimeIndex | pd.RangeIndex
@@ -81,7 +81,7 @@ class TimeSeries:
         return cls(values=arr, index=idx, freq=freq, name=name)
 
     @classmethod
-    def from_series(cls, series: pd.Series, *, name: str | None = None) -> "TimeSeries":
+    def from_series(cls, series: pd.Series, *, name: str | None = None) -> TimeSeries:
         """Build from a pandas Series (``series.index`` becomes ``index``)."""
         idx = series.index
         freq = getattr(idx, "freqstr", None) or pd.infer_freq(idx) if isinstance(
@@ -256,7 +256,7 @@ class BaseForecaster(ABC):
         return p
 
     @classmethod
-    def load(cls, path: str | Path) -> "BaseForecaster":
+    def load(cls, path: str | Path) -> BaseForecaster:
         with Path(path).open("rb") as f:
             obj = pickle.load(f)
         if not isinstance(obj, BaseForecaster):
@@ -306,7 +306,7 @@ class Forecaster(Protocol):
     name: str
     supports_quantiles: bool
 
-    def fit(self, series: TimeSeries | np.ndarray | list[float]) -> "Forecaster": ...
+    def fit(self, series: TimeSeries | np.ndarray | list[float]) -> Forecaster: ...
     def predict(self, horizon: int) -> ForecastOutput: ...
     def predict_quantiles(
         self, horizon: int, quantiles: tuple[float, ...] = ...

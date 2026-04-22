@@ -70,8 +70,8 @@ class ChronosForecaster(BaseForecaster):
         if self.model_name in self._pipeline_cache:
             return self._pipeline_cache[self.model_name]
         try:
-            import torch  # noqa: PLC0415
-            from chronos import ChronosPipeline  # noqa: PLC0415
+            import torch
+            from chronos import ChronosPipeline
         except ImportError as e:
             raise ImportError(
                 "ChronosForecaster requires chronos-forecasting + torch. "
@@ -156,7 +156,7 @@ class TimesFMForecaster(BaseForecaster):
         if self.model_name in self._model_cache:
             return self._model_cache[self.model_name]
         try:
-            import timesfm  # noqa: PLC0415
+            import timesfm
         except ImportError as e:
             raise ImportError(
                 "TimesFMForecaster requires timesfm. Install the `foundation` "

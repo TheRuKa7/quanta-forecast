@@ -15,14 +15,14 @@ from __future__ import annotations
 import numpy as np
 
 __all__ = [
-    "mae",
-    "rmse",
-    "mape",
-    "smape",
-    "mase",
-    "pinball_loss",
     "coverage",
     "crps_ensemble",
+    "mae",
+    "mape",
+    "mase",
+    "pinball_loss",
+    "rmse",
+    "smape",
 ]
 
 _EPS = 1e-12

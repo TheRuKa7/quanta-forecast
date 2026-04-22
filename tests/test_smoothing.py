@@ -51,7 +51,7 @@ def test_holt_beats_naive_on_trend() -> None:
 
 
 def test_holt_winters_requires_two_cycles() -> None:
-    with pytest.raises(ValueError, match=">= 2 .* season"):
+    with pytest.raises(ValueError, match=r">= 2 .* season"):
         HoltWintersForecaster(season=12).fit(list(range(20)))
 
 

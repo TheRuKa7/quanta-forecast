@@ -12,11 +12,11 @@ class reference, and the factory does the import — so a simple
 """
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 from quanta.base import BaseForecaster
 
-__all__ = ["create", "list_backends", "register", "is_available"]
+__all__ = ["create", "is_available", "list_backends", "register"]
 
 
 #: Factory = zero-arg callable that returns a fresh BaseForecaster instance.

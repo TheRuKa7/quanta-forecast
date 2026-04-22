@@ -14,10 +14,8 @@ That duality means the CLI is usable out of the box with zero setup.
 """
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
-from typing import Optional
 
 import typer
 from rich.console import Console
@@ -46,7 +44,7 @@ err_console = Console(stderr=True, style="bold red")
 
 
 def _load_input(
-    input_path: Optional[Path], synthetic: Optional[str]
+    input_path: Path | None, synthetic: str | None
 ) -> TimeSeries:
     """Resolve the ``--input`` / ``--synthetic`` knob into a :class:`TimeSeries`.
 
@@ -148,10 +146,10 @@ def forecast(
         ..., "--model", "-m", help="backend name (see `list-backends`)"
     ),
     horizon: int = typer.Option(14, "--horizon", "-h"),
-    input_path: Optional[Path] = typer.Option(
+    input_path: Path | None = typer.Option(
         None, "--input", "-i", help="CSV with `ds,y` columns"
     ),
-    synthetic: Optional[str] = typer.Option(
+    synthetic: str | None = typer.Option(
         None,
         "--synthetic",
         help="use a built-in series: airline | seasonal | trend",
@@ -159,7 +157,7 @@ def forecast(
     quantiles: bool = typer.Option(
         False, "--quantiles/--no-quantiles", help="emit q10/q50/q90 columns"
     ),
-    output: Optional[Path] = typer.Option(
+    output: Path | None = typer.Option(
         None, "--output", "-o", help="write CSV here; default = stdout"
     ),
     param: list[str] = typer.Option(
@@ -197,13 +195,13 @@ def backtest(
         60, "--min-train", help="size of first training window"
     ),
     step: int = typer.Option(1, "--step", help="fold stride"),
-    max_folds: Optional[int] = typer.Option(None, "--max-folds"),
+    max_folds: int | None = typer.Option(None, "--max-folds"),
     expanding: bool = typer.Option(
         True, "--expanding/--sliding", help="window strategy"
     ),
     season: int = typer.Option(1, "--season", help="MASE seasonal period"),
-    input_path: Optional[Path] = typer.Option(None, "--input", "-i"),
-    synthetic: Optional[str] = typer.Option(None, "--synthetic"),
+    input_path: Path | None = typer.Option(None, "--input", "-i"),
+    synthetic: str | None = typer.Option(None, "--synthetic"),
     param: list[str] = typer.Option([], "--param", "-p"),
     json_out: bool = typer.Option(
         False, "--json", help="emit machine-readable JSON instead of a table"

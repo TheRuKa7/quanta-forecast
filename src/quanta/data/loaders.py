@@ -15,10 +15,10 @@ import pandas as pd
 from quanta.base import TimeSeries
 
 __all__ = [
-    "load_csv",
     "load_airline_passengers",
-    "make_synthetic_trend",
+    "load_csv",
     "make_synthetic_seasonal",
+    "make_synthetic_trend",
 ]
 
 
@@ -55,10 +55,10 @@ def load_csv(
 
 
 def load_airline_passengers() -> TimeSeries:
-    """The classic Box-Jenkins monthly airline series (1949–1960).
+    """The classic Box-Jenkins monthly airline series (1949-1960).
 
     Numbers are the published ones and ship in-repo rather than being
-    downloaded — 144 values is cheap to keep as a literal, and it removes
+    downloaded - 144 values is cheap to keep as a literal, and it removes
     a network dependency from tests and examples.
     """
     values = [

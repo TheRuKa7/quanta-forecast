@@ -18,8 +18,8 @@ from __future__ import annotations
 from quanta.base import (
     DEFAULT_QUANTILES,
     BaseForecaster,
-    ForecastOutput,
     Forecaster,
+    ForecastOutput,
     TimeSeries,
 )
 from quanta.data.loaders import (
@@ -33,8 +33,8 @@ from quanta.registry import create, is_available, list_backends, register
 __version__ = "0.1.0"
 
 __all__ = [
-    "BaseForecaster",
     "DEFAULT_QUANTILES",
+    "BaseForecaster",
     "ForecastOutput",
     "Forecaster",
     "TimeSeries",

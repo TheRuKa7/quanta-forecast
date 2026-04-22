@@ -25,16 +25,16 @@ model selection via statsmodels) or the statsforecast backend.
 """
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
 
 from quanta.base import BaseForecaster, TimeSeries
 
 __all__ = [
-    "SimpleExpSmoothingForecaster",
     "HoltForecaster",
     "HoltWintersForecaster",
+    "SimpleExpSmoothingForecaster",
 ]
 
 

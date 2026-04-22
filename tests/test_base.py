@@ -86,7 +86,7 @@ def test_forecast_output_validates_horizon() -> None:
 
 
 def test_forecast_output_validates_quantile_range() -> None:
-    with pytest.raises(ValueError, match="in .0, 1"):
+    with pytest.raises(ValueError, match=r"in .0, 1"):
         ForecastOutput(
             point=np.zeros(3),
             index=pd.RangeIndex(3),

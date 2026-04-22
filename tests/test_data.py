@@ -14,7 +14,7 @@ from quanta.data.loaders import (
 
 def test_airline_passengers_has_canonical_shape() -> None:
     ts = load_airline_passengers()
-    assert len(ts) == 144  # 12 years × 12 months
+    assert len(ts) == 144  # 12 years x 12 months
     assert ts.freq == "MS"
     # First month is the published value.
     assert int(ts.values[0]) == 112
@@ -29,7 +29,6 @@ def test_synthetic_trend_is_monotone_on_average() -> None:
 
 
 def test_synthetic_seasonal_has_period() -> None:
-    ts = make_synthetic_seasonal(n=140, period=7, amplitude=5.0, noise=0.0, seed=0)
     # With no noise and no trend, same-day-of-week values should coincide.
     tight = make_synthetic_seasonal(
         n=140, period=7, amplitude=5.0, trend_slope=0.0, noise=0.0, seed=0

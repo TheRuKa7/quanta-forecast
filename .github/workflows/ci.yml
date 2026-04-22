@@ -5,16 +5,46 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Weekly Monday noon UTC — keeps the heavy-deps smoke job running even
+    # when nobody pushes. The `test` job below ignores the schedule via its
+    # `if:` condition.
+    - cron: "0 12 * * 1"
 
 jobs:
   test:
+    # Lint + tests against the tiers most users install. `foundation` and
+    # `deep` extras pull torch + darts and weigh multiple GB; those have
+    # their own smoke job below.
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.13"
+
+      - name: Sync deps (dev + classical + ml)
+        run: uv sync --extra dev --extra classical --extra ml
+
+      - name: Ruff (lint)
+        run: uv run ruff check src tests
+
+      - name: Pytest
+        run: uv run pytest -q --no-cov
+
+  foundation-smoke:
+    # Opt-in smoke test for the heavy extras. Scheduled weekly and
+    # manually dispatchable. Not gating on every push because the
+    # torch + chronos wheels are large and slow to install.
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
         with:
           python-version: "3.13"
-      - run: uv sync --extra dev
-      - run: uv run ruff check src tests
-      - run: uv run mypy src
-      - run: uv run pytest -q
+      - run: uv sync --extra dev --extra foundation
+      - run: uv run python examples/chronos_zeroshot.py --smoke

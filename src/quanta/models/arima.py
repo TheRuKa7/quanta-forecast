@@ -52,7 +52,7 @@ class ARIMAForecaster(BaseForecaster):
 
     def _fit(self, series: TimeSeries) -> None:
         try:
-            from statsmodels.tsa.arima.model import ARIMA as _SMArima
+            from statsmodels.tsa.arima.model import ARIMA as _SMArima  # noqa: N811
         except ImportError as e:  # pragma: no cover - dev-only path
             raise ImportError(
                 "ARIMAForecaster requires statsmodels. Install the "

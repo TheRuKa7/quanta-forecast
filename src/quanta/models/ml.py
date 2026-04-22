@@ -26,7 +26,7 @@ import pandas as pd
 from quanta.base import BaseForecaster, TimeSeries
 from quanta.features.lag import LagFeatureBuilder
 
-__all__ = ["LightGBMForecaster", "DirectLightGBMForecaster"]
+__all__ = ["DirectLightGBMForecaster", "LightGBMForecaster"]
 
 
 _DEFAULT_PARAMS: dict[str, Any] = {
@@ -44,7 +44,7 @@ _DEFAULT_PARAMS: dict[str, Any] = {
 
 def _import_lightgbm():
     try:
-        import lightgbm as lgb  # noqa: PLC0415
+        import lightgbm as lgb
     except ImportError as e:  # pragma: no cover - dev-only path
         raise ImportError(
             "LightGBMForecaster requires lightgbm. Install the `ml` extra: "

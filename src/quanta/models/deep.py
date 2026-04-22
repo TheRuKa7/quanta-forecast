@@ -25,7 +25,7 @@ import numpy as np
 
 from quanta.base import BaseForecaster, TimeSeries
 
-__all__ = ["TFTForecaster", "NBEATSForecaster", "NHiTSForecaster"]
+__all__ = ["NBEATSForecaster", "NHiTSForecaster", "TFTForecaster"]
 
 
 def _require_darts():
@@ -35,8 +35,8 @@ def _require_darts():
     import cost (darts drags in torch + lightning).
     """
     try:
-        import darts  # noqa: PLC0415, F401
-        from darts import TimeSeries as DartsTimeSeries  # noqa: PLC0415
+        import darts  # noqa: F401
+        from darts import TimeSeries as DartsTimeSeries
     except ImportError as e:  # pragma: no cover - dev-only path
         raise ImportError(
             "Deep backends (tft/nbeats/nhits) require darts. Install the "

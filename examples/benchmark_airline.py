@@ -18,7 +18,6 @@ from quanta.data.loaders import load_airline_passengers
 from quanta.eval.backtest import rolling_origin_backtest
 from quanta.registry import create
 
-
 #: (display_name, factory). Each factory must return a fresh model.
 BACKENDS: list[tuple[str, callable]] = [
     ("seasonal_naive(12)", lambda: create("seasonal_naive", season=12)),

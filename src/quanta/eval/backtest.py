@@ -12,8 +12,8 @@ per-fold ``fit`` anyway — parallelism would buy little.
 """
 from __future__ import annotations
 
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
-from typing import Callable, Sequence
 
 import numpy as np
 import pandas as pd

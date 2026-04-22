@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import pytest
 
-from quanta.registry import create, is_available, list_backends, register
 from quanta.models.naive import NaiveForecaster
+from quanta.registry import create, is_available, list_backends, register
 
 
 def test_core_backends_always_available() -> None:
